@@ -39,7 +39,24 @@
       
       <!-- Navigation Table Content -->
         <div class="tab-content">
-
+          <?php
+            $categoryId = '1';
+            $active = true;
+            shuffle($galeria);
+            include __DIR__ . "/partials/imagen-galeria.part.php";
+            $categoryId = '2';
+            $active = false;
+            shuffle($galeria);
+            include __DIR__ . "/partials/imagen-galeria.part.php";
+            $categoryId = '3';
+            $active = false;
+            shuffle($galeria);
+            include __DIR__ . "/partials/imagen-galeria.part.php";
+            $categoryId = '1';
+            $active = true;
+            shuffle($galeria);
+            include __DIR__ . "/partials/imagen-galeria.part.php";
+          ?>
         <!-- First Category pictures -->
            <div id="category1" class="tab-pane active" >
               <div class="row popup-gallery">
