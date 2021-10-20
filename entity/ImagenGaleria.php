@@ -3,16 +3,16 @@ class ImagenGaleria
 {
         
     private $nombre;
-    private $description;
+    private $descripcion;
     private $numVisualizaciones;
     private $numLikes;
     private $numDownloads;
 
-    public function __construct(string $nombre, string $description,
+    public function __construct(string $nombre, string $descripcion,
                                 int $numVisualizaciones = 0, int $numLikes = 0,
                                 int $numDownloads = 0){
         $this->nombre = $nombre;
-        $this->descripcion = $description;
+        $this->descripcion = $descripcion;
         $this->numVisualizaciones = $numVisualizaciones;
         $this->numLikes = $numLikes;
         $this->numDownloads = $numDownloads;
@@ -39,16 +39,19 @@ class ImagenGaleria
                 return $this;
         }
 
-        
+        public function getDescripcion()
+        {
+                return $this->descripcion;
+        }
 
         /**
          * Set the value of description
          *
          * @return  self
          */ 
-        public function setDescription($description)
+        public function setDescripcion($descripcion)
         {
-                $this->description = $description;
+                $this->descripcion = $descripcion;
 
                 return $this;
         }
@@ -58,7 +61,7 @@ class ImagenGaleria
         /**
          * Get the value of numVisualizaciones
          */ 
-        public function getVisualizaciones()
+        public function getNumVisualizaciones()
         {
                 return $this->numVisualizaciones;
         }
