@@ -124,5 +124,5 @@
    </footer>
 
 <?php
-  include __DIR__ . "/partials/fin-doc.part.php";
+  include __DIR__ . "/partials/show-messages.part.php";
 ?>

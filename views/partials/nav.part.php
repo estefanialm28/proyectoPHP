@@ -7,6 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
             <a  class="navbar-brand page-scroll" href="#page-top">
                 <span>[PHOTO]</span>
@@ -25,6 +26,9 @@
                 </li>
                 <li class="<?= (esOpcionMenuActiva("contact")? "active" : "");?> lien">
                   <a href="<?= (esOpcionMenuActiva("contact")? "#" : "/contact.php");?>"><i class="fa fa-phone-square sr-icons"></i> Contact</a>
+                </li>
+                <li class="<?= (esOpcionMenuActiva("galeria")? "active" : "");?> lien">
+                  <a href="<?= (esOpcionMenuActiva("galeria")? "#" : "/galeria.php");?>"><i class="fa fa-image"></i> Galería</a>
                 </li>
             </ul>
         </div>
