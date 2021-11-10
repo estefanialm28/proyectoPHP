@@ -1,13 +1,13 @@
 <?php
-    $title = "Galería";
+    $title = "Asociados";
     require_once "./utils/utils.php";
-    require_once "./entity/ImagenGaleria.php";
+    require_once "./entity/Asociado.php";
     require_once "./utils/File.php";
     require_once "./exceptions/FileException.php";
     require_once "./utils/SimpleImage.php";
-
-    $info = $description = $urlImagen = "";
-    $descriptionError = $imagenErr = $hayErrores = false;
+    
+    $info = $description = $nombre = $urlImagen = "";
+    $nombreError = $imagenErr = $hayErrores = false;
     $errores = [];
 
     if("POST" === $_SERVER["REQUEST_METHOD"]){
@@ -18,7 +18,7 @@
         $imageFile = new File("imagen",
                                 array("image/jpeg", "image/jpg", "image/png"),
                                 (2 * 1024 * 1024));
-        $imageFile->saveUploadedFile(ImagenGaleria::RUTA_IMAGENES_GALLERY);
+        $imageFile->saveUploadedFile(Asociado::RUTA_ASOCIADOS);
         try {
 
             // Create a new SimpleImage object
@@ -26,15 +26,11 @@
 
             $simpleImage
             
-            ->fromFile(ImagenGaleria::RUTA_IMAGENES_GALLERY . $imageFile->getFileName())
+            ->fromFile(Asociado::RUTA_ASOCIADOS . $imageFile->getFileName())
             
-            ->resize(975, 525)
+            ->resize(50, 50)
             
-            ->toFile(ImagenGaleria::RUTA_IMAGENES_PORTFOLIO . $imageFile->getFileName())
-            
-            ->resize(650, 350)
-            
-            ->toFile(ImagenGaleria::RUTA_IMAGENES_GALLERY . $imageFile->getFileName());
+            ->toFile(Asociado::RUTA_ASOCIADOS . $imageFile->getFileName());
             
             }catch(Exception $err) {
             
@@ -47,17 +43,17 @@
             $errores[] = $fe->getMessage();
             $imagenErr = true;
         }
-        $description = sanitizeInput(($_POST["description"] ?? ""));
-        if(empty($description)){
-            $errores[] = "La descripción es obligatoria";
-            $descriptionError = true;
+        $nombre = sanitizeInput(($_POST["nombre"] ?? ""));
+        if(empty($nombre)){
+            $errores[] = "El nombre es obligatorio";
+            $nombreError = true;
         }
         if(0 == count($errores)){
             $info = 'Imagen enviada correctamente';
-            $urlImagen = ImagenGaleria::RUTA_IMAGENES_GALLERY . $imageFile->getFileName();
-            $description = "";
+            $urlImagen = Asociado::RUTA_ASOCIADOS . $imageFile->getFileName();
+            $nombre = $description = "";
         }else{
             $info = "Datos erróneos";
         }
     }
-    include("./views/galeria.view.php");
+    include("./views/asociados.view.php");

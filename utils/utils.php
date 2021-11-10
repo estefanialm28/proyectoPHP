@@ -23,3 +23,13 @@ function sanitizeInput(string $data) : string{
     $data = htmlspecialchars($data);
     return $data;
 }
+
+function getAsociados(array $asociados): array{
+    $asociadosTotal = sizeof($asociados);
+    if($asociadosTotal <= 3 ){
+        print_r($asociados);
+    }else{
+        shuffle($asociados);
+        return array_slice($asociados, 0, 3);
+    }
+}
