@@ -7,7 +7,6 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
             </button>
             <a  class="navbar-brand page-scroll" href="#page-top">
                 <span>[PHOTO]</span>
@@ -28,10 +27,10 @@
                   <a href="<?= (esOpcionMenuActiva("contact")? "#" : "/contact.php");?>"><i class="fa fa-phone-square sr-icons"></i> Contact</a>
                 </li>
                 <li class="<?= (esOpcionMenuActiva("galeria")? "active" : "");?> lien">
-                  <a href="<?= (esOpcionMenuActiva("galeria")? "#" : "/galeria.php");?>"><i class="fa fa-image"></i> Galería</a>
+                  <a href="<?= (esOpcionMenuActiva("galeria")? "#" : "/galeria.php");?>"><i class="fa fa-image sr-icons"></i> Galería</a>
                 </li>
-                <li class="<?= (esOpcionMenuActiva("asociados")? "active" : "");?> lien">
-                  <a href="<?= (esOpcionMenuActiva("asociados")? "#" : "/asociados.php");?>"><i class="fa fa-hand-o-right" aria-hidden="true"></i> Asociados</a>
+                <li class="<?= (esOpcionMenuActiva("asociados")? "active" : "");?>">
+                  <a href="<?= (esOpcionMenuActiva("asociados")? "#" : "/asociados.php");?>"><i class="fa fa-hand-o-right sr-icons"></i> Asociados</a>
                 </li>
             </ul>
         </div>

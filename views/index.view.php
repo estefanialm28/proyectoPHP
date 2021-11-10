@@ -52,8 +52,11 @@
             $active = false;
             shuffle($galeria);
             include __DIR__ . "/partials/imagen-galeria.part.php";
+
           ?>
-            <!-- End of Navigation Table Content -->
+  
+        </div>
+    <!-- End of Navigation Table Content -->
       </div><!-- End of Index-body box -->
 
     <!-- Newsletter form -->
@@ -71,12 +74,9 @@
       </div>
     <!-- End of Newsletter form -->  
 
-    <!-- Box within partners name and logo -->
-    <?php
-      include __DIR__ . "/partials/asociados.part.php";
-      ?>
-    <!-- End of Box within partners name and logo -->
-
+<?php
+  include __DIR__ . "/partials/asociado.part.php";
+?>
    </div><!-- End of index box -->
 
    <!-- Footer -->

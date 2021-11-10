@@ -1,122 +1,113 @@
-<?php
+<?php 
+
 class Asociado
 {
-    const RUTA_ASOCIADOS = 'images/index/';
+    const RUTA_IMAGENES_ASOCIADO = 'images/index/';
+    /**
+     * @var string
+     */
     private $nombre;
-    private $descripcion;
-    private $logo;
-    
-
-    public function __construct(string $nombre, string $descripcion,
-                                int $logo = 0){
-        $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
-        $this->logo = $logo;
-        }
-    
-        /**
-         * Get the value of nombre
-         */ 
-        public function getNombre()
-        {
-                return $this->nombre;
-        }
-
-        /**
-         * Set the value of nombre
-         *
-         * @return  self
-         */ 
-        public function setNombre($nombre)
-        {
-                $this->nombre = $nombre;
-
-                return $this;
-        }
-
-        public function getDescripcion()
-        {
-                return $this->descripcion;
-        }
-
-        /**
-         * Set the value of description
-         *
-         * @return  self
-         */ 
-        public function setDescripcion($descripcion)
-        {
-                $this->descripcion = $descripcion;
-
-                return $this;
-        }
-
-        
-
-        /**
-         * Get the value of logo
-         */ 
-        public function getlogo()
-        {
-                return $this->logo;
-        }
-
-        
-
-        /**
-         * Set the value of logo
-         *
-         * @return  self
-         */ 
-        public function setlogo($logo)
-        {
-                $this->logo = $logo;
-
-                return $this;
-        }
-
-
-const RUTA_IMAGENES_PORTFOLIO = 'images/index/portfolio/';
-
-const RUTA_IMAGENES_GALLERY = 'images/index/gallery/';
-
-    //....  
 
     /**
-
-     * Devuelve el path a las imágenes del portfolio
-
-     *
-
-     * @return string
-
+     * @var string
      */
+    private $logo;
 
-    public function getUrlPortfolio() : string
+    /**
+     * @var string
+     */
+    private $descripcion;
 
-    {
-
-        return self::RUTA_IMAGENES_PORTFOLIO . $this->getNombre();
-
+    /**
+     * @param string $nombre
+     * @param string $logo
+     * @param string $descripcion
+     */
+    public function __construct(string $nombre, string $logo, string $descripcion = ""){
+        $this->nombre = $nombre;
+        $this->logo = $logo;
+        $this->descripcion = $descripcion;
     }
 
     /**
-
-     * Devuelve el path a las imágenes de la galería
-
+     * Get the value of nombre
      *
-
-     * @return string
-
-     */
-
-    public function getUrlAsociado() : string
-
+     * @return  string
+     */ 
+    public function getNombre()
     {
+        return $this->nombre;
+    }
 
-        return self::RUTA_ASOCIADOS . $this->getNombre();
+    /**
+     * Set the value of nombre
+     *
+     * @param  string  $nombre
+     *
+     * @return  self
+     */ 
+    public function setNombre(string $nombre)
+    {
+        $this->nombre = $nombre;
 
+        return $this;
+    }
+
+    /**
+     * Get the value of logo
+     *
+     * @return  string
+     */ 
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * Set the value of logo
+     *
+     * @param  string  $logo
+     *
+     * @return  self
+     */ 
+    public function setLogo(string $logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of descripcion
+     *
+     * @return  string
+     */ 
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
+    /**
+     * Set the value of descripcion
+     *
+     * @param  string  $descripcion
+     *
+     * @return  self
+     */ 
+    public function setDescripcion(string $descripcion)
+    {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    /**
+     * Devuelve el path a las imágenes del asociado
+     *
+     * @return string
+     */
+    public function getUrlImagen() : string
+    {
+        return self::RUTA_IMAGENES_ASOCIADO . $this->getLogo();
     }
 }
-
-?>
