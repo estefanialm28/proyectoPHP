@@ -2,7 +2,7 @@
 
 require_once __DIR__ . "/Entity.php";
 
-class Asociado extends Entity
+class Contacto extends Entity
 {
     const RUTA_IMAGENES_ASOCIADO = 'images/index/';
     /**

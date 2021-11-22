@@ -9,7 +9,17 @@
     require_once "./utils/Forms/custom/MyFormGroup.php";
     require_once "./utils/Forms/custom/MyFormControl.php";
     require_once "./utils/Validator/NotEmptyValidator.php";
+    require_once "./database/Connection.php";
+    require_once "./core/App.php";
+    require_once "./repository/ImagenGaleriaRepository.php";
+    require_once "./repository/MensajeRepository.php";
  
+    $config = require_once 'app/config.php';
+    App::bind('config', $config);
+    App::bind('connection', Connection::make($config['database']));
+
+    $repositorio = new MensajeRepository();
+    
     $info = "";
     $firstName = new InputElement('text');
     $firstName
@@ -59,6 +69,9 @@
      ->appendChild($subjectWrapper)
      ->appendChild($messageWrapper)
      ->appendChild($b);
+
+    
+
      if ("POST" === $_SERVER["REQUEST_METHOD"]) {
         $form->validate();
         if (!$form->hasError()) {
@@ -75,5 +88,12 @@
             $email->setCssClass($email->getCssClass() . ' has-error');
           }
         }
+    }
+
+    try{
+      $imagenes = $repositorio->findAll();
+    }catch(QueryException $qe){
+      $imagenes = [];
+      die($qe->getMessage());
     }
   include("./views/contact.view.php");

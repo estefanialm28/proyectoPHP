@@ -5,6 +5,8 @@
     require_once "./utils/Forms/ButtonElement.php";
     require_once "./utils/Forms/FileElement.php";
     require_once "./utils/Forms/FormElement.php";
+    require_once "./utils/Forms/SelectElement.php";
+    require_once "./utils/Forms/OptionElement.php";
     require_once "./utils/Forms/custom/MyFormGroup.php";
     require_once "./utils/Forms/custom/MyFormControl.php";
     require_once "./utils/Validator/NotEmptyValidator.php";
@@ -13,7 +15,34 @@
     require_once "./exceptions/FileException.php";
     require_once "./utils/SimpleImage.php";
     require_once "./entity/ImagenGaleria.php";
+    require_once "./entity/Categoria.php";
+    require_once "./database/QueryBuilder.php";
+    require_once "./database/Connection.php";
+    require_once "./core/App.php";
+    require_once "./repository/ImagenGaleriaRepository.php";
+    require_once "./repository/CategoriaRepository.php";
+    require_once "./utils/Forms/SelectElement.php";
     
+    $config = require_once 'app/config.php';
+    App::bind('config', $config);
+    App::bind('connection', Connection::make($config['database']));
+    
+    $repositorio = new ImagenGaleriaRepository();
+
+    $repositorioCategoria = new CategoriaRepository();
+
+    $categoriasEl = new SelectElement(false);
+
+    $categoriasEl
+    ->setName('categoria');
+    $categorias = $repositorioCategoria->findAll();
+    foreach($categorias as $categoria){
+      $option = new OptionElement($categoriasEl, $categoria->getNombre());
+      $option->setDefaultValue($categoria->getId());
+      $categoriasEl->appendChild($option);
+    }
+    $categoriaWrapper = new MyFormControl($categoriasEl, 'Categoría', 'col-xs-12');
+
     $info = $urlImagen = "";
 
     $description = new TextareaElement();
@@ -43,8 +72,12 @@
     ->appendChild($labelFile)
     ->appendChild($file)
     ->appendChild($descriptionWrapper)
+    ->appendChild($categoriaWrapper)
     ->appendChild($b);
 
+    
+    
+    
     if ("POST" === $_SERVER["REQUEST_METHOD"]) {
         $form->validate();
         if (!$form->hasError()) {
@@ -60,6 +93,9 @@
               ->toFile(ImagenGaleria::RUTA_IMAGENES_GALLERY . $file->getFileName()); 
               $info = 'Imagen enviada correctamente'; 
               $urlImagen = ImagenGaleria::RUTA_IMAGENES_GALLERY . $file->getFileName();
+              
+              $imagenGaleria = new ImagenGaleria($file->getFileName(), $description->getValue(), 0,0,0,$categoriasEl->getValue());
+              $repositorio->save($imagenGaleria);
               $form->reset();
             
           }catch(Exception $err) {
@@ -69,5 +105,12 @@
         }else{
           
         }
+    }
+
+    try{
+      $imagenes = $repositorio->findAll();
+    }catch(QueryException $qe){
+      $imagenes = [];
+      die($qe->getMessage());
     }
     include("./views/galeria.view.php");
