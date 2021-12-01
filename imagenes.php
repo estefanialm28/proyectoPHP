@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once "./entity/ImagenGaleria.php";
     require_once "./database/QueryBuilder.php";
     require_once "./database/Connection.php";
